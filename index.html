@@ -71,8 +71,8 @@ id="toc-functional-blocks-master">Functional Blocks</a>
 <ul>
 <li><a href="#uart-synchronization"
 id="toc-uart-synchronization">UART Synchronization</a></li>
-<li><a href="#current-limitation-of-gpio-pins"
-id="toc-current-limitation-of-gpio-pins">Current Limitation of GPIO
+<li><a href="#gpio-switch-defect"
+id="toc-gpio-switch-defect">GPIO Switch Defect
 Pins</a></li>
 <li><a href="#solution-to-challenges"
 id="toc-solution-to-challenges">Solution to Challenges</a></li>
@@ -275,8 +275,7 @@ few minutes, we realized that the EC value would continue to rise. This
 is because the DC current causes an ionized channel to build up between
 the two electrodes in the water. This cause inconsistent EC readings as
 time goes on.</p>
-<h2 id="current-limitation-of-gpio-pins">Current Limitation of GPIO
-Pins</h2>
+<h2 id="gpio-switch-defect">GPIO Switch Defect</h2>
 <p>Our next idea was to try using the GPIO pins to power the probe,
 since we can turn it off when not needed, preventing excessive
 polarization. However, the GPIO pins are current limited, and any
