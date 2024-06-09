@@ -55,7 +55,7 @@ id="toc-functional-blocks-master">Functional Blocks: Master</a>
 <ul>
 <li><a href="#aws-iot-core" id="toc-aws-iot-core">AWS IoT Core</a></li>
 <li><a href="#oled-display" id="toc-oled-display">OLED Display</a></li>
-<li><a href="#ir-receiver" id="toc-ir-receiver">IR Receiver</a></li>
+<!-- <li><a href="#ir-receiver" id="toc-ir-receiver">IR Receiver</a></li> -->
 </ul></li>
 </ul></li>
 </ul></li>
@@ -173,6 +173,55 @@ thresholds over HTTP from the AWS device shadow, writing the reported
 TDS to the device shadow, and activating the two pumps using the BJT
 control circuit.</p>
 <!-- <h2 id="functional-blocks-master">Functional Blocks: Master</h2> -->
+
+<h3 id="oled-display">OLED Display</h3>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
+  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
+    We connect to the OLED Display with the SPI (Serial Peripheral Interface) bus, with the CC32000 Launchpad as the mater device
+    and the OLED as the slave.
+  </div>
+  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
+    <div class="fig">
+      <img src="./media/Image_008.jpg" style="width:auto;height:2in" />
+      <span class="caption">OLED Wiring Diagram</span>
+    </div>
+  </div>
+</div>
+
+<h3 id="i2c accelerometer">Accelerometer Control</h3>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
+  <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
+    The AWS IoT core allows our devices to communicate with each other
+    asynchronously. The master device can update the desired thresholds, and
+    the slave device will read them and synchronize them to the reported
+    state. The slave device will also post the TDS and temperature readings
+    periodically.
+  </div>
+  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
+    <div class="fig">
+      <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
+      <span class="caption">Device Shadow JSON</span>
+    </div>
+  </div>
+</div>
+
+<h3 id="GPIO SW button">GPIO SW Button</h3>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
+  <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
+    The AWS IoT core allows our devices to communicate with each other
+    asynchronously. The master device can update the desired thresholds, and
+    the slave device will read them and synchronize them to the reported
+    state. The slave device will also post the TDS and temperature readings
+    periodically.
+  </div>
+  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
+    <div class="fig">
+      <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
+      <span class="caption">Device Shadow JSON</span>
+    </div>
+  </div>
+</div>
+
 <h3 id="aws-iot-core">AWS IoT Core</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
@@ -190,23 +239,7 @@ control circuit.</p>
   </div>
 </div>
 
-<h3 id="oled-display">OLED Display</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    On both Master and Slave devices, the user can view the current TDS and
-    temperature of the plant solution on an OLED display. The user can also
-    use the display to view and edit the TDS thresholds. The CC3200 uses the
-    SPI bus to communicate with the display module.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_008.jpg" style="width:auto;height:2in" />
-      <span class="caption">OLED Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="ir-receiver">IR Receiver</h3>
+<!-- <h3 id="ir-receiver">IR Receiver</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
     On both the Master and Slave devices, a user can input the TDS
@@ -223,7 +256,7 @@ control circuit.</p>
       <img src="./media/Image_009.jpg" style="width:auto;height:2in" />
       <span class="caption">IR Receiver Wiring Diagram</span>
     </div>
-  </div>
+  </div> -->
 <!-- </div> -->
 
 
