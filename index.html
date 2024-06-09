@@ -168,19 +168,9 @@ Bill of Materials</a></li>
 <h1 id="implementation">Implementation</h1>
 <h3 id="cc3200-launchxl-evaluation-board">CC3200-LAUNCHXL Evaluation
 Board</h3>
-<p>All control and logic was handled by two CC3200 microcontroller
-units, one each for the Master and Slave device. On the master device,
-it was responsible for decoding IR inputs from the remote to allow the
-user to input thresholds to be sent over AWS. The board’s SPI
-functionality, using the TI SPI library, was used to interface with the
-OLED display. The MCU is WiFi enabled, allowing a remote connection
-between the two boards.</p>
-<p>On the slave device, the microcontroller was responsible for the same
-functionalities as above, in addition to the TDS reading and control.
-This includes interfacing with the ADC over the I2C bus, reading
-thresholds over HTTP from the AWS device shadow, writing the reported
-TDS to the device shadow, and activating the two pumps using the BJT
-control circuit.</p>
+<p>All control and logic was handled by two CC3200 microcontrollers. The board’s SPI functionality, using the TI SPI library, was used to connect with the
+  OLED display to showcase the game view. The built-in accelerometer interfaced with the board over I2C so that the rotation of the board can be taken for user control. The CC3200 also connects with the AWS device shadow via credentials and policies we define so that we can write the reported winner and the
+  score of the winning player to the device shadow before receiving an email.</p>
 <!-- <h2 id="functional-blocks-master">Functional Blocks: Master</h2> -->
 
 <h3 id="oled-display">OLED Display</h3>
