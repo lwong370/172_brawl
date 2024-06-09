@@ -74,9 +74,9 @@ id="toc-uart-synchronization">UART Synchronization</a></li>
 <li><a href="#gpio-switch-defect"
 id="toc-gpio-switch-defect">GPIO Switch Defect
 Pins</a></li>
-<li><a href="#solution-to-challenges"
+<!-- <li><a href="#solution-to-challenges"
 id="toc-solution-to-challenges">Solution to Challenges</a></li>
-</ul></li>
+</ul></li> -->
 <li><a href="#future-work" id="toc-future-work">Future Work</a></li>
 <li><a href="#finalized-bom" id="toc-finalized-bom">Finalized
 BOM</a></li>
@@ -225,7 +225,7 @@ control circuit.</p>
 
 <h3 id="aws-iot-core">AWS IoT Core</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 150px'>
+  <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
     In order to connect to AWS, we recycled our AWS Console set up from Lab 4. 
     That set up involved creating a 'Thing' to represent our CC3200 boards in the cloud, 
     as well as the policies and certificates to properly interface with the physical boards.
@@ -281,7 +281,7 @@ since we can turn it off when not needed, preventing excessive
 polarization. However, the GPIO pins are current limited, and any
 control circuit with a transistor would introduce extra voltage drops.
 Therefore, the simple two-probe implementation was not feasible.</p>
-<h2 id="solution-to-challenges">Solution to Challenges</h2>
+<!-- <h2 id="solution-to-challenges">Solution to Challenges</h2>
 <p>We realized that using DC current to measure EC was not feasible.
 Therefore, we purchased a standalone EC measurement board from CQRobot.
 This inexpensive solution ($8) used a low-voltage, low-current AC signal
@@ -289,7 +289,7 @@ to prevent polarization. The board would convert the AC voltage drop
 across the solution to a DC analog voltage, which would then be read by
 our ADC. After calibrating the setup using a commercial TDS pen, the
 results were accurate within 3%, and would not drift by more than 0.5%
-over time.</p>
+over time.</p> -->
 <h1 id="future-work">Future Work</h1>
 <p>Given more time, we had the idea of developing a web app to allow
 users to control the device from their cell phone. Another idea we
