@@ -199,8 +199,7 @@ control circuit.</p>
 <h3 id="accelerometer-control">Accelerometer Control</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    To attack the opponent, a player must press SW3 of their CC3200. When the two players are within range of each other (which we defined in code as a 10 pixel radius), 
-    the color of a player's character turns yellow on their console indicating that they can attack.
+    
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
@@ -213,11 +212,8 @@ control circuit.</p>
 <h3 id="gpio-switch">GPIO Switch Button</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    The AWS IoT core allows our devices to communicate with each other
-    asynchronously. The master device can update the desired thresholds, and
-    the slave device will read them and synchronize them to the reported
-    state. The slave device will also post the TDS and temperature readings
-    periodically.
+    To attack the opponent, a player must press SW3 of their CC3200. When the two players are within range of each other (which we defined in code as a 10 pixel radius), 
+    the color of a player's character turns yellow on their console indicating that they can attack.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
@@ -230,11 +226,10 @@ control circuit.</p>
 <h3 id="aws-iot-core">AWS IoT Core</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    The AWS IoT core allows our devices to communicate with each other
-    asynchronously. The master device can update the desired thresholds, and
-    the slave device will read them and synchronize them to the reported
-    state. The slave device will also post the TDS and temperature readings
-    periodically.
+    In order to connect to AWS, we recycled our AWS Console set up from Lab 4. 
+    That set up involved creating a 'Thing' to represent our CC3200 boards in the cloud, 
+    as well as the policies and certificates to properly interface with the physical boards.
+    In the code, we created a JSON format that we use to send to AWS as shown.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
