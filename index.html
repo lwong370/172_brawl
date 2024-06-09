@@ -18,7 +18,7 @@
 <h1 class="title">172 Brawl: Embedded Systems Final Project</h1>
 <p class="subtitle"><blockquote><b>EEC172 Final Project Webpage Example</b><br/> Note to current students: this is an <i>example</i> webpage and may not fulfill all stated requirements of the current quarter's assignment.<br/>The website source is hosted <a href="https://github.com/ucd-eec172/project-website-example">on github</a>. </blockquote></p>
 <p class="author"><strong>Lana Wong and Fabiola Gallardo</strong></p>
-<p class="date"><em>EEC172 WQ24</em></p>
+<p class="date"><em>EEC172 SQ24</em></p>
 <div class="abstract">
 <div class="abstract-title"><h2>Description</h2></div>
 Hydroponics is a technique where plants are grown in a nutrient-rich
@@ -205,7 +205,7 @@ This includes interfacing with the ADC over the I2C bus, reading
 thresholds over HTTP from the AWS device shadow, writing the reported
 TDS to the device shadow, and activating the two pumps using the BJT
 control circuit.</p>
-<h2 id="functional-blocks-master">Functional Blocks: Master</h2>
+<!-- <h2 id="functional-blocks-master">Functional Blocks: Master</h2> -->
 <h3 id="aws-iot-core">AWS IoT Core</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
@@ -257,96 +257,8 @@ control circuit.</p>
       <span class="caption">IR Receiver Wiring Diagram</span>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
-<h2 id="functional-blocks-slave">Functional Blocks: Slave</h2>
-<p>The slave device contains all the functional blocks from the master
-device, plus the following:</p>
-<h3 id="analog-to-digital-converter-adc-board">Analog-To-Digital
-Converter (ADC) Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    The outputs from the thermistor and TDS sensor board are
-    in the form of analog voltages, which need to be converted to digital
-    values to be usable in our program. We chose the AD1015 breakout board
-    from Adafruit, which sports 4-channels and 12 bits of precision. We
-    ended up using only 2 channels, so there is a potential for even more
-    cost savings. The ADC board supports I2C communication, which we can use
-    to request and read the two channel voltages. 
-    The <a href="https://cdn-shop.adafruit.com/datasheets/ads1015.pdf">
-    product datasheet</a> contains the necessary configuration values
-    and register addresses for operation.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_010.jpg" style="width:auto;height:2in" />
-      <span class="caption">ADC Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="thermistor">Thermistor</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 300px;'>
-    Conductivity-based TDS measurements are sensitive to temperature. To
-    allow accurate TDS measurements in a variety of climates and seasons,
-    temperature compensation calculations must be performed. To measure the
-    temperature, we use an NTC thermistor connected in a voltage divider
-    with a 10k resistor. The voltage across the resistor is read by the ADC
-    and converted to temperature using the equation provided by the
-    thermistor datasheet.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_011.jpg" style="width:auto;height:2in" />
-      <span class="caption">Thermistor Circuit Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="tds-sensor-board">TDS Sensor Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    In our first attempt to measure TDS, we used a simple two-probe analog
-    setup with a voltage divider. We soon found out that this was a naïve
-    approach (see Challenges). Consequently, we acquired a specialty TDS
-    sensing board from CQRobot, which generates a sinusoidal pulse and
-    measures the voltage drop to give a highly precise voltage to the ADC.
-    The MCU can then convert this voltage to a TDS value using the equation
-    provided by the device datasheet. We calibrated the TDS readings using a
-    standalone TDS sensor pen. After calibration and setting up the curves
-    for temperature compensation, we were able to achieve TDS readings
-    accurate to within 5% of the TDS sensor pen.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
-    <div class="fig">
-      <img src="./media/Image_012.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">TDS Sensor Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="pumps-and-control-circuit">Pumps and Control Circuit</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    The CC3200 is unable to provide sufficient power to drive the pumps,
-    which need 100mA of current each. Therefore, we used an external power
-    source in the form of 2 AA batteries for each pump motor. To allow the
-    CC3200 to turn on/off the motors, we designed a simple amplifier using a
-    Common Emitter topology. When the control pin is asserted HIGH, the BJT
-    will allow current to flow from 3V to ground through the pump motor.
-    Conversely, if the control signal is LOW, the BJT will not allow current
-    to flow in the motor. For each motor, there is a reverse-biased diode
-    connected across it. This protects our circuit from current generated by
-    the motor if it is spun from external force or inertia.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
-    <div class="fig">
-      <img src="./media/Image_013.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">Pump Circuit Diagrams</span>
-    </div>
-  </div>
-</div>
 
 <h1 id="challenges">Challenges</h1>
 <p>The most significant challenge we faced while developing this
