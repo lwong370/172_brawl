@@ -176,7 +176,7 @@ Board</h3>
 <h3 id="oled-display">OLED Display</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    We connect to the OLED Display with the SPI (Serial Peripheral Interface) bus, with the CC32000 Launchpad as the mater device
+    We connect to the OLED Display with the SPI (Serial Peripheral Interface) bus, with the CC32000 Launchpad as the master device
     and the OLED as the slave.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
@@ -195,7 +195,7 @@ Board</h3>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
       <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
-      <span class="caption">Device Shadow JSON</span>
+      <span class="caption">Accelerometer on the Board</span>
     </div>
   </div>
 </div>
@@ -257,21 +257,14 @@ prototype was of inaccurate and inconsistent Electrical Conductivity
 (EC) measurements. This occurred due to two reasons: probe channel
 polarization and current limitations of GPIO pins.</p>
 <h2 id="uart-synchronization">UART Synchronization</h2>
-<p>Our first design for the probe was simply two copper rods, which
-would add as electrodes. This probe would be connected in series with a
-1000-ohm resistor to act as a voltage divider. We would simply connect
-the probe to VCC and measure the voltage divider through the ADC,
-allowing us to calculate the EC. However, when we used the probe for a
-few minutes, we realized that the EC value would continue to rise. This
-is because the DC current causes an ionized channel to build up between
-the two electrodes in the water. This cause inconsistent EC readings as
-time goes on.</p>
+<p>We originally had issues syncing the displays of both OLEDs together in real-time. 
+  To overcome this, we sent coordinates x and y over UART using UARTCharPut(...) and UARTCharGet(...). 
+  Each board essentially takes turns sending each other's coordinate information so that we can control two characters on the OLED simultaneously.  </p>
 <h2 id="gpio-switch-defect">GPIO Switch Defect</h2>
-<p>Our next idea was to try using the GPIO pins to power the probe,
-since we can turn it off when not needed, preventing excessive
-polarization. However, the GPIO pins are current limited, and any
-control circuit with a transistor would introduce extra voltage drops.
-Therefore, the simple two-probe implementation was not feasible.</p>
+<p>On one of our CC3200 LaunchPad Boards, we did not realize that its SW3 was not working. 
+  We found this out by running a gpio example from a previous lab on both the boards we had, 
+  only to realize that the button registered as being on active-low for only one of the boards. 
+  In order to fix this issue, we exchanged the defected board for a new one.</p>
 <!-- <h2 id="solution-to-challenges">Solution to Challenges</h2>
 <p>We realized that using DC current to measure EC was not feasible.
 Therefore, we purchased a standalone EC measurement board from CQRobot.
