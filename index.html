@@ -27,7 +27,7 @@ Every time a player is attacked, the number of hearts for that player decrements
 Once a player wins, an email is sent announcing who the winner is and the score for the winner.   
  <br/><br/> Our source code can be
 found <!-- replace this link -->
-<a href="https://github.com/ucd-eec172/project-website-example"> here
+<a href="https://github.com/lwong370/172_Brawl_Project"> here
 (placeholder)</a>.<br />
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./assets/172_brawl_closer_look.jpg" style="width:auto;height:2in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./assets/172_brawl_action.jpg" style="width:auto;height:2in" /> <!-- <span class="caption"> </span> --> </div> </div>
 <h2>Video Demo</h2>
@@ -114,20 +114,7 @@ Bill of Materials</a></li>
 <h2 id="system-architecture">System Architecture</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    To start off, we need two of everything in order for the game to work. This includes laptops, CC3200 Launchpads, OLEDs, accelerometer, and switch 3. 
-    The only things we did not need duplicates for was UART, since that allowed communications between both CC3200 Launchpads, and AWS since it is connected to one 'Thing'. 
-    The laptops provide power for the CC3200 Launchpad and is also able to run 172 Brawl. 
-    From there, the game is displayed on both OLEDs via SPI through configured pins on the microcontroller. 
-    Both game displays are synchronized through the UART that is connected between both microcontrollers. 
-    This allows the coordinates of each player to be displayed and replicated on each OLED. 
-    The two players are controlled by the accelerometer which is connected to the microcontroller through the I2C pins. 
-    To determine the coordinates and the speed of the movement of each player, the acceleration of the x and y are multiplied by a rate and added to the current coordinates of the players. 
-    We also added a delay of 1 millisecond between each update of coordinates. In order for each character to attack each other, they had to be within 10 pixels from each other. 
-    Once the player you are controlling in the range of the opponent, this allows you to attack them by pressing Switch 3. 
-    Switch 3 is connected to the microcontroller via GPIO pins. Once a player looses their 5 hearts, which is displayed on the opponent's OLED, they officially lost. 
-    For the winner, they are sent an email through AWS about their win and score. Their score is reflected by how long it took the player to win. 
-    This is determined by a Systick Timer. The timer starts when the game starts and is stopped when the game is over, in other words, a player won. 
-    The lower the score is, the less time it took to defeat the other player and the more time it took to defeat the other player, the higher the score is.
+    To start off, we need two of everything in order for the game to work. This includes laptops, CC3200 Launchpads, OLEDs, accelerometer, and switch 3. The only things we did not need duplicates for was UART, since that allowed communications between both CC3200 Launchpads, and AWS since it is connected to one 'Thing'. The laptops provide power for the CC3200 Launchpad and are also able to run 172 Brawl. From there, the game is displayed on both OLEDs via SPI through configured pins on the microcontroller. Both game displays are synchronized through the UART that is connected between both microcontrollers. This allows the coordinates of each player to be displayed and replicated on each OLED. The two players are controlled by the accelerometer which is connected to the microcontroller through the I2C pins. To determine the coordinates and the speed of the movement of each player, the acceleration of the x and y are multiplied by a rate and added to the current coordinates of the players. We also added a delay of 1 millisecond between each update of coordinates. In order for each character to attack each other, they had to be within 10 pixels from each other. Once the player you are controlling is in range of the opponent, this allows you to attack them by pressing Switch 3. Switch 3 is connected to the microcontroller via GPIO pins. Once a player loses their 5 hearts, which is displayed on the opponent's OLED, they officially lose. For the winner, they are sent an email through AWS about their win and score. Their score is reflected by how long it took the player to win. This is determined by a Systick Timer. The timer starts when the game starts and is stopped when the game is over, in other words, a player wins. The lower the score is, the less time it took to defeat the other player and the more time it took to defeat the other player, the higher the score is.
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
     <div class="fig">
