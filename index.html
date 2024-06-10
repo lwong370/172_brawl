@@ -237,8 +237,8 @@ Board</h3>
 <p>The most significant challenge we faced while developing this
 prototype was hardware issues that we encountered and had to troubleshoot. We also had to pivot our project multiple times based off what worked and what didn't.</p>
 <h2 id="uart-synchronization">UART Synchronization</h2>
-<p>We originally had issues syncing the displays of both OLEDs together in real-time. To overcome this, we sent coordinates x and y over UART using \textbf{UARTCharPut(...)} 
-  and \textbf{UARTCharGet(...)}. Each board essentially takes turns sending each other's coordinate information so that we can control two characters on the OLED simultaneously. </p>
+<p>We originally had issues syncing the displays of both OLEDs together in real-time. To overcome this, we sent coordinates x and y over UART using UARTCharPut(...) 
+  and UARTCharGet(...). Each board essentially takes turns sending each other's coordinate information so that we can control two characters on the OLED simultaneously. </p>
 <h2 id="gpio-switch-defect">GPIO Switch Defect</h2>
 <p>On one of our CC3200 LaunchPad Boards, we did not realize that its SW3 was not working. 
   We found this out by running a gpio example from a previous lab on both the boards we had, 
