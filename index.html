@@ -169,12 +169,13 @@ Board</h3>
 <h3 id="accelerometer-control">Accelerometer Control</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    
+    For each person to control their player, we used the accelerometer that is built-in on the CC3200 Launchpad. To do this we referenced Lab2 to set up the players. The players are balls that move in the direction the CC3200 Launchpad is tilted. Overall, it has the same logic from Lab 2 to get our characters synchronized with the accelerometer. To do this, we multiplied a rate, in our case 0.5, with the x and y acceleration and added it to the coordinates (which we get by calling I2C\_IF\_Write(...)) of where the player currently is. 
+    This resulted in smooth movement of our player moving across the playing field.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
-      <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
-      <span class="caption">Accelerometer on the Board</span>
+      <img src="./assets/i2c_connections.PNG" style="width:auto;height:2.5in" />
+      <span class="caption">I2C Connections</span>
     </div>
   </div>
 </div>
@@ -183,7 +184,7 @@ Board</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
     To attack the opponent, a player must press SW3 of their CC3200. When the two players are within range of each other (which we defined in code as a 10 pixel radius), 
-    the color of a player's character turns yellow on their console indicating that they can attack.
+    the color of a player's character turns yellow on their console indicating that they can attack. The location of SW3 is shown.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
