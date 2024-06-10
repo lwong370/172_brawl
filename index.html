@@ -111,6 +111,25 @@ Bill of Materials</a></li>
 </div>
 
 <h1 id="design">Design</h1>
+
+<h2 id="functional-specification">Functional Specification</h2>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
+  <div style="display:inline-block;vertical-align:top;flex:1 0 300px;">
+    For 172 Brawl, there are 8 states for this game to function. Our first state is the start of the game where, 
+    once connected to power, our program loads. This allows us to continue to the next state. In this state is the playing field, 
+    with the two players. From there the two players brawl with each other until one of their five hearts are gone. 
+    What is shown on one OLED is replicated on the other OLED via UART. This allows the movements of one player to be shown on the other player's screen to be able to attack each other. 
+    Player one or Player two can win by attacking the other player five times which is represented by the 5 hearts. The winner is sent an email through AWS about their win and their score. 
+    The score is calculated based on how long the two players were brawling. The lower the score, the less time it took to defeat the opponent; 
+    the higher the score the more time it took to defeat the opponent.
+  </div>
+  <div style="display:inline-block;vertical-align:top;flex:0 0 400px">
+    <div class="fig">
+      <img src="./assets/functional_spec_diag.png" style="width:90%;height:auto;" />
+      <span class="caption">State Diagram</span>
+    </div>
+  </div>
+
 <h2 id="system-architecture">System Architecture</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
@@ -124,23 +143,6 @@ Bill of Materials</a></li>
   </div>
 </div>
 
-<h2 id="functional-specification">Functional Specification</h2>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
-  <div style="display:inline-block;vertical-align:top;flex:1 0 300px;">
-    For 172 Brawl, there are 8 states for this game to function. Our first state is the start of the game where, 
-    once connected to power, our program loads. This allows us to continue to the next state. In this state is the playing field, 
-    with the two players. From there the two players brawl with each other until one of their five hearts are gone. 
-    What is shown on one OLED is replicated on the other OLED via UART. This allows the movements of one player to be shown on the other player's screen to be able to attack each other. 
-    Player one or Player two can win by attacking the other player five times which is represented by the 5 hearts. The winner is sent an email through AWS about their win and their score. 
-    The score is calculated based on how long the two players were brawling. The lower the score, the less time it took to defeat the opponent; 
-    the higher the score the more time it took to defeat the opponent.
-  </div>
-  <div style="display:inline-block;vertical-align:top;flex:0 0 500px">
-    <div class="fig">
-      <img src="./assets/functional_spec_diag.png" style="width:90%;height:auto;" />
-      <span class="caption">State Diagram</span>
-    </div>
-  </div>
 </div>
 
 <h1 id="implementation">Implementation</h1>
