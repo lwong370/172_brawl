@@ -114,26 +114,24 @@ Bill of Materials</a></li>
 <h2 id="system-architecture">System Architecture</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    As shown in the system flowchart, we use one of the CC3200 boards for
-    the closed feedback loop for maintaining concentration in the
-    environment. The board will read values with I2C protocol through an ADC
-    which reads values from the thermistor and the TDS meter sensor. The
-    board will also periodically read user-defined thresholds from the AWS
-    cloud using RESTful APIs. When the sensory values read outside of the
-    user-defined thresholds, the board will activate the motor control
-    function to pump either water or nutrient solution to bring the
-    concentration back within the thresholds. Meanwhile, another CC3200
-    board is frequently reading from the AWS cloud to present the current
-    TDS reading and user-defined threshold to the user on an OLED through
-    SPI protocols. To adjust the thresholds, the user can either do it
-    remotely or locally by using a TV remote to type the number into the IR
-    receiver. The adjustments will be updated to the AWS and if the user
-    updates remotely, the local CC3200 board will update the values in the
-    next synchronization.
+    To start off, we need two of everything in order for the game to work. This includes laptops, CC3200 Launchpads, OLEDs, accelerometer, and switch 3. 
+    The only things we did not need duplicates for was UART, since that allowed communications between both CC3200 Launchpads, and AWS since it is connected to one 'Thing'. 
+    The laptops provide power for the CC3200 Launchpad and is also able to run 172 Brawl. 
+    From there, the game is displayed on both OLEDs via SPI through configured pins on the microcontroller. 
+    Both game displays are synchronized through the UART that is connected between both microcontrollers. 
+    This allows the coordinates of each player to be displayed and replicated on each OLED. 
+    The two players are controlled by the accelerometer which is connected to the microcontroller through the I2C pins. 
+    To determine the coordinates and the speed of the movement of each player, the acceleration of the x and y are multiplied by a rate and added to the current coordinates of the players. 
+    We also added a delay of 1 millisecond between each update of coordinates. In order for each character to attack each other, they had to be within 10 pixels from each other. 
+    Once the player you are controlling in the range of the opponent, this allows you to attack them by pressing Switch 3. 
+    Switch 3 is connected to the microcontroller via GPIO pins. Once a player looses their 5 hearts, which is displayed on the opponent's OLED, they officially lost. 
+    For the winner, they are sent an email through AWS about their win and score. Their score is reflected by how long it took the player to win. 
+    This is determined by a Systick Timer. The timer starts when the game starts and is stopped when the game is over, in other words, a player won. 
+    The lower the score is, the less time it took to defeat the other player and the more time it took to defeat the other player, the higher the score is.
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
     <div class="fig">
-      <img src="./media/Image_005.jpg" style="width:90%;height:auto;" />
+      <img src="./assets/system_diag.png" style="width:90%;height:auto;" />
       <span class="caption">System Flowchart</span>
     </div>
   </div>
@@ -142,24 +140,17 @@ Bill of Materials</a></li>
 <h2 id="functional-specification">Functional Specification</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 300px;">
-    Our system works based on the following state diagram. The device will
-    periodically monitor the temperature and the electrical conductivity
-    (EC) of the solution and convert the values into a TDS value using a
-    calibration curve. At the same time, the device will check for threshold
-    inputs, both over the AWS shadow and via manual input on the IR
-    receiver. It will compare the TDS with the lower and upper thresholds
-    set by the user. If the value is within the thresholds, it will stay in
-    the rest state. If the TDS is higher than the upper thresholds, it will
-    go to the water state and activate the water pump until the PPM is lower
-    than the upper thresholds and go back to the rest state. If the PPM is
-    lower than the lower thresholds, it will go to the nutrient state and
-    activate the nutrient pump until the PPM is higher than the lower
-    thresholds and go back to the rest state. In each state, the device will
-    periodically post the TDS.
+    For 172 Brawl, there are 8 states for this game to function. Our first state is the start of the game where, 
+    once connected to power, our program loads. This allows us to continue to the next state. In this state is the playing field, 
+    with the two players. From there the two players brawl with each other until one of their five hearts are gone. 
+    What is shown on one OLED is replicated on the other OLED via UART. This allows the movements of one player to be shown on the other player's screen to be able to attack each other. 
+    Player one or Player two can win by attacking the other player five times which is represented by the 5 hearts. The winner is sent an email through AWS about their win and their score. 
+    The score is calculated based on how long the two players were brawling. The lower the score, the less time it took to defeat the opponent; 
+    the higher the score the more time it took to defeat the opponent.
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 500px">
     <div class="fig">
-      <img src="./media/Image_006.jpg" style="width:90%;height:auto;" />
+      <img src="./assets/functional_spec_diag.png" style="width:90%;height:auto;" />
       <span class="caption">State Diagram</span>
     </div>
   </div>
