@@ -149,7 +149,8 @@ Board</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
     We connect to the OLED Display with the SPI (Serial Peripheral Interface) bus, with the CC32000 Launchpad as the master device
-    and the OLED as the slave.
+    and the OLED as the slave. We use Pin UART1_TX and UART_RX, which are pins 58 and 59. On one board, 
+    Pin 58 (transmitting) is connected to the other board's Pin 59 (receiving), and vice versa. Both boards are connected to a common ground as well.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
@@ -178,7 +179,9 @@ Board</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
     To attack the opponent, a player must press SW3 of their CC3200. When the two players are within range of each other (which we defined in code as a 10 pixel radius), 
-    the color of a player's character turns yellow on their console indicating that they can attack. The location of SW3 is shown.
+    the color of a player's character turns yellow on their console indicating that they can attack. The location of SW3 is shown. 
+    We used the equation: distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)), where x1 is player 1's position, y1 is player 1's y position, x2 is player 2's x position, and y2 is player 2's y position. 
+    We then check if distance is less than 10.
   </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
