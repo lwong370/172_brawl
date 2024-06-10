@@ -144,8 +144,8 @@ Board</h3>
 <p>All control and logic was handled by two CC3200 microcontrollers. The board’s SPI functionality, using the TI SPI library, was used to connect with the
   OLED display to showcase the game view. The built-in accelerometer interfaced with the board over I2C so that the rotation of the board can be taken for user control. The CC3200 also connects with the AWS device shadow via credentials and policies we define so that we can write the reported winner and the
   score of the winning player to the device shadow before receiving an email.</p>
-<!-- <h2 id="functional-blocks-master">Functional Blocks: Master</h2> -->
-<h3 id="oled-display">OLED Display</h3>
+
+  <h3 id="oled-display">OLED Display</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
     We connect to the OLED Display with the SPI (Serial Peripheral Interface) bus, with the CC32000 Launchpad as the master device
